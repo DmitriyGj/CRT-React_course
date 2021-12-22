@@ -1,2 +1,2 @@
-# CRT-React_course
+# CRT_React_course
 Милютин Дмитрий
