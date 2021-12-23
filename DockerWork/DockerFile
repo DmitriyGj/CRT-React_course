@@ -1,6 +1,7 @@
-FROM node:12-alpine3.10
-WORKDIR src/app 
+FROM node:12
+WORKDIR /app 
+COPY package*.json script.js
 RUN npm install
-COPY . .
-EXPOSE 8080
-CMD [ "npm","start" ]
+COPY . . 
+EXPOSE "8080:8080"
+CMD [ "node","script.js" ]

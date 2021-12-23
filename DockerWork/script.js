@@ -1,6 +1,10 @@
+'use strict'    
+
 function hello(){
-    while(true){
-        console.log('Все добра и позитива');
+    let counter = 0;
+    while(counter !== 2022){
+        console.log('Всем добра и позитива');
+        counter++;
     }
 }
 

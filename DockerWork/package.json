@@ -1,0 +1,13 @@
+{
+    "name": "First_node_app",
+    "version": "1.0.0",
+    "description": "node.js on docker",
+    "author": "Dmitriy Milyutin",
+    "main": "script.js",
+    "scripts": {
+      "start": "node script.js"
+    },
+    "dependencies": {
+      "express": "^4.16.1"
+    }
+  }
