@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+  background-color:lightseagreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color:white;
+}
+
+.Footer {
+  font-size: 12px;
+  color:lightgray;
+  background-color:lightslategray;
+}
