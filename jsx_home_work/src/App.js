@@ -5,7 +5,6 @@ import CardClass  from './components/Card_class/Card_class.jsx'
 import CardFunc  from './components/Card_func/Card_func';
 
 function App() {
-  console.log('render app')
 
   return (
     <div className="App">
