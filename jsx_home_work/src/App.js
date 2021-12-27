@@ -1,6 +1,6 @@
 import './App.css';
-import pug from './pug.jpg'
-import snake from './snake.jpg'
+import pug from './media/pug.jpg'
+import snake from './media/snake.jpg'
 import CardClass  from './components/Card_class/Card_class.jsx'
 import CardFunc  from './components/Card_func/Card_func';
 
