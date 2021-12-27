@@ -29,8 +29,8 @@ class LoginControl extends Component{
     return<div>
       <Header isLoggedIn={this.state.isLoggedIn }></Header>
       {this.state.isLoggedIn
-        ? <LogoutButton onClick={this.handleLogout}></LogoutButton>
-        : <LoginButton onClick = {this.handleLogin}></LoginButton>
+        ? <LogoutButton onClick={this.handleLogout}></LogoutButton>//()=>this.handleLogout() 
+        : <LoginButton onClick = {this.handleLogin}></LoginButton>//()=>this.handleLogout()
       }
     </div>
   }
