@@ -1,0 +1,10 @@
+.SomeCard{
+    background:linear-gradient(aquamarine, brown) ;
+    color: rgb(118, 118, 240);
+    width: 100%;
+    border-radius: 10px;
+}
+
+button{
+    padding: 2%;
+}
