@@ -1,0 +1,8 @@
+.GufBlock{
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+    min-width: 500px;
+    min-height: 200px;
+    justify-content: center;
+}
