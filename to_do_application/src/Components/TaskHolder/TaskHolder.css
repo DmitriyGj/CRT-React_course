@@ -1,0 +1,9 @@
+.taskHolder{
+    background-color: cadetblue;
+    padding: 20px;
+    width: 60%;
+}
+
+.taskHolder button{
+    margin-left:10% ;
+}

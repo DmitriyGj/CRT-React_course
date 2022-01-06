@@ -3,29 +3,16 @@ import {Component} from "react";
 class Task extends Component{
     constructor(props) {
         super(props);
-
+        this.key = props.key;
         this.state={
             complete:false,
-            title:this.props.title,
-            createdDate:new Date(),
-            endDate:new Date()
+            title:props.title,
         };
-
         this.toggleCompleteStatus = this.toggleCompleteStatus.bind(this);
-        this.changeCreatedDate = this.changeEndDate.bind(this);
-        this.changeEndDate = this.changeEndDate.bind(this);
     }
 
-    toggleCompleteStatus(){
-        this.setState({complete: !this.state.complete})
-    }
-
-    changeCreatedDate(e){
-        this.setState({createDate: Date.parse(e.target.value)})
-    }
-
-    changeEndDate(e){
-        this.setState({endDate:Date.parse(e.target.value)})
+    toggleCompleteStatus=(e)=>{
+        this.setState({complete: e.target.checked})
     }
 
     render(){
@@ -34,7 +21,7 @@ class Task extends Component{
                         <h1>{this.state.title}</h1>
                         <div className='TaskControls'>
                             <button>Edit</button>
-                            <button>Delete</button>
+                            <button onClick={()=>this.props.parentRemoveTaskHandler(this)}>Remove</button>
                         </div>
                     </div>
                     <label>Выполнено:
