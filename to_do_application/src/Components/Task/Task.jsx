@@ -1,12 +1,15 @@
 import {Component} from "react";
+import './Task.css'
+import TaskPriority from "../../TaskPriority";
+
 
 class Task extends Component{
     constructor(props) {
         super(props);
-        this.key = props.key;
         this.state={
             complete:false,
             title:props.title,
+            priority: props.priority
         };
         this.toggleCompleteStatus = this.toggleCompleteStatus.bind(this);
     }
@@ -15,19 +18,37 @@ class Task extends Component{
         this.setState({complete: e.target.checked})
     }
 
+    defineBackgroundColor(){
+        switch (this.state.priority){
+            case 'High':{
+                return 'HighPriorityTask'
+                break;
+            }
+            case 'Medium':{
+                return 'MediumPriorityTask'
+                break;
+            }
+            case 'Low':{
+                return  'LowPriorityTask'
+                break;
+            }
+        }
+    }
+
     render(){
-        return <div>
-                    <div className='TaskHeader'>
+        return <div className={`Task ${this.defineBackgroundColor()}`}>
+                    <div className='TaskHeader '>
                         <h1>{this.state.title}</h1>
                         <div className='TaskControls'>
-                            <button>Edit</button>
-                            <button onClick={()=>this.props.parentRemoveTaskHandler(this)}>Remove</button>
+                            <button>Редактировать</button>
+                            <button onClick={()=>this.props.parentRemoveTaskHandler(this)}>Удалить</button>
                         </div>
                     </div>
-                    <label>Выполнено:
-                        <input type='checkbox' value={this.state.complete}
+                    <div className='CompleteBlock'>
+                        <label htmlFor='complete'>Выполнено:</label>
+                        <input id='complete' type='checkbox' value={this.state.complete}
                                onChange={this.toggleCompleteStatus}/>
-                    </label>
+                    </div>
 
                     {/*<div className='DatesBlock'>*/}
                     {/*    <label>*/}

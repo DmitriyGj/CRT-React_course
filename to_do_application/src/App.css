@@ -1,9 +1,5 @@
 .App {
   display: flex;
   margin-top: 5%;
-  text-align: center;
-  wdith:60%;
   justify-content: center;
-  border:2px solid gray ;
-  border-radius: 20px;
 }

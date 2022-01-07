@@ -2,6 +2,7 @@ import {Component} from 'react'
 import {Task} from "../Task/Task";
 import './TaskHolder.css'
 import  uuid from 'react-uuid';
+import {PrioritySelector} from "../PrioritySelector/PrioritySelector";
 
 class TaskHolder extends  Component{
     constructor(props) {
@@ -9,12 +10,14 @@ class TaskHolder extends  Component{
 
         this.state ={
             newTaskTitle:'',
+            newTaskPriority:'Low',
             tasks:[ ]
         };
 
         this.addTaskHandler = this.addTaskHandler.bind(this);
         this.changeNewTaskTitleHandler = this.changeNewTaskTitleHandler.bind(this);
         this.removeTaskHandler = this.removeTaskHandler.bind(this);
+        this.changeNewTaskPriorityHandler = this.changeNewTaskPriorityHandler.bind(this);
     }
 
     removeTaskHandler(task) {
@@ -22,7 +25,14 @@ class TaskHolder extends  Component{
     }
 
     changeNewTaskTitleHandler(e){
+
         this.setState({newTaskTitle: e.target.value});
+    }
+
+    changeNewTaskPriorityHandler(e){
+
+        const value = e.target.value;
+        this.setState({newTaskPriority:value})
     }
 
     addTaskHandler(){
@@ -30,7 +40,9 @@ class TaskHolder extends  Component{
         const unique = this.state.tasks.every(instTask => instTask.props.title !== titleForNewTask)
         if(titleForNewTask){
             if(unique){
-                const taskForAdding = (<Task id ={uuid()} title={this.state.newTaskTitle}
+                const taskForAdding = (<Task id ={uuid()}
+                                             priority = {this.state.newTaskPriority}
+                                             title={this.state.newTaskTitle}
                                              parentRemoveTaskHandler = {this.removeTaskHandler} />);
                 this.setState({tasks:[...this.state.tasks,taskForAdding ]});
             }
@@ -44,19 +56,16 @@ class TaskHolder extends  Component{
     }
 
     render() {
-        return <div className='taskHolder'>
-                    <div className='TaskCOnroller'>
+        return <div className='TaskHolder'>
+                    <h2>Управление заданиями</h2>
+                    <div className='TaskController'>
                         <label> Заголовок
                             <input type = 'text' value={this.state.newTaskTitle}
                                    onChange={this.changeNewTaskTitleHandler} />
                         </label>
-
-                        <button onClick={this.addTaskHandler}>Add</button>
-                        <label>
-                            <select><option>раз</option>
-                                <option>два</option>
-                                <option>три</option></select>
-                        </label>
+                        <PrioritySelector parentValue ={this.state.newTaskPriority}
+                            parentChangeHandler = {this.changeNewTaskPriorityHandler}/>
+                        <button onClick={this.addTaskHandler}>Добавить</button>
                     </div>
                     <ul>
                         {this.state.tasks.map(task=><li key = {task.props.id}>{task}</li>)}
