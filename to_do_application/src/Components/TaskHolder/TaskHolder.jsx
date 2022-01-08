@@ -1,74 +1,67 @@
 import {Component} from 'react'
-import {Task} from "../Task/Task";
 import './TaskHolder.css'
-import  uuid from 'react-uuid';
-import {PrioritySelector} from "../PrioritySelector/PrioritySelector";
+import {TaskFilterSelector} from "./TaskFilterSelector/TaskFilterSelector";
+import {TaskController} from "./TaskController/TaskController";
+import {Task} from "../Task/Task";
 
 class TaskHolder extends  Component{
     constructor(props) {
         super(props);
-
         this.state ={
-            newTaskTitle:'',
-            newTaskPriority:'Low',
-            tasks:[ ]
+            tasks:[ ],
+            taskFilter:'(task)=>task'
         };
 
         this.addTaskHandler = this.addTaskHandler.bind(this);
-        this.changeNewTaskTitleHandler = this.changeNewTaskTitleHandler.bind(this);
         this.removeTaskHandler = this.removeTaskHandler.bind(this);
-        this.changeNewTaskPriorityHandler = this.changeNewTaskPriorityHandler.bind(this);
+        this.changeFilterHandler = this.changeFilterHandler.bind(this);
+        this.changeDoneTaskHandler = this.changeDoneTaskHandler.bind(this);
+    }
+
+    changeDoneTaskHandler(task){
+        this.setState(state=>{
+            const copy = this.state.tasks;
+            const index = copy.findIndex(displayTask=>displayTask.id === task.props.id);
+            copy[index].done = !task.props.done;
+            return copy;
+        })
+    }
+
+    changeFilterHandler(e){
+        this.setState({taskFilter:e.target.value});
     }
 
     removeTaskHandler(task) {
-        this.setState({tasks: this.state.tasks.filter(displayTask => displayTask.props.id !== task.props.id)})
+        this.setState({tasks: this.state.tasks.filter(displayTask => displayTask.id !== task.props.id)})
     }
 
-    changeNewTaskTitleHandler(e){
-
-        this.setState({newTaskTitle: e.target.value});
-    }
-
-    changeNewTaskPriorityHandler(e){
-
-        const value = e.target.value;
-        this.setState({newTaskPriority:value})
-    }
-
-    addTaskHandler(){
-        const titleForNewTask = this.state.newTaskTitle;
-        const unique = this.state.tasks.every(instTask => instTask.props.title !== titleForNewTask)
-        if(titleForNewTask){
-            if(unique){
-                const taskForAdding = (<Task id ={uuid()}
-                                             priority = {this.state.newTaskPriority}
-                                             title={this.state.newTaskTitle}
-                                             parentRemoveTaskHandler = {this.removeTaskHandler} />);
-                this.setState({tasks:[...this.state.tasks,taskForAdding ]});
-            }
-            else{
-                alert('Такое задание уже существует')
-            }
+    addTaskHandler(task){
+        const unique = this.state.tasks.every(instTask => instTask.title !== task.title)
+        if(unique){
+            this.setState({tasks:[...this.state.tasks,task ]});
         }
         else{
-            alert('Имя задачи не может быть пустым');
+            alert('Такое задание уже существует')
         }
     }
 
     render() {
         return <div className='TaskHolder'>
-                    <h2>Управление заданиями</h2>
-                    <div className='TaskController'>
-                        <label> Заголовок
-                            <input type = 'text' value={this.state.newTaskTitle}
-                                   onChange={this.changeNewTaskTitleHandler} />
-                        </label>
-                        <PrioritySelector parentValue ={this.state.newTaskPriority}
-                            parentChangeHandler = {this.changeNewTaskPriorityHandler}/>
-                        <button onClick={this.addTaskHandler}>Добавить</button>
+                    <div className='MainInfo'>
+                        <h2>Управление заданиями</h2>
+                        <TaskController parent = {this}/>
+                        <TaskFilterSelector parentChangeFilterHandler = {this.changeFilterHandler}
+                                                parentFilterValue ={this.state.taskFilter} />
                     </div>
                     <ul>
-                        {this.state.tasks.map(task=><li key = {task.props.id}>{task}</li>)}
+                        {  [...this.state.tasks].filter(eval(this.state.taskFilter)).
+                        map(task=><li key = {task.id}><Task id={task.id}
+                                                            title = {task.title}
+                                                            done={task.done}
+                                                            priority ={task.priority}
+                                                            parentRemoveTaskHandler={this.removeTaskHandler}
+                                                            changeDoneTaskParentHandler={this.changeDoneTaskHandler}/>
+                        </li>)}
                     </ul>
                </div>
     }
