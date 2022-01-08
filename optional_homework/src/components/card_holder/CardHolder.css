@@ -1,0 +1,16 @@
+.CardHolder{
+    width:80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5%;
+}
+
+
+button{
+    width: 40%;
+    margin: 2% auto;
+    padding: 2%;
+    border-radius: 10px;
+    background-color: rgb(89, 215, 219);
+}
