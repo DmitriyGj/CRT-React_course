@@ -1,0 +1,8 @@
+.TalkativeBlock{
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+    min-width: 500px;
+    min-height: 200px;
+    justify-content: center;
+}

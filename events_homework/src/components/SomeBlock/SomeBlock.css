@@ -1,0 +1,13 @@
+.SomeBlock{
+    display: flex;
+    flex-direction: column;
+    background-color: #adff2f;
+    min-height: 200px;
+    max-height: 200px;
+    justify-content: center;
+    overflow: scroll;
+}
+
+.SomeBlock h4{
+    width: 10000px;
+}
