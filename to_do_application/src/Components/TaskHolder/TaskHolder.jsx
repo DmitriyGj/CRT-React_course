@@ -18,21 +18,16 @@ class TaskHolder extends  Component{
         this.changeDoneTaskHandler = this.changeDoneTaskHandler.bind(this);
     }
 
-    changeDoneTaskHandler(task){
-        this.setState(state=>{
-            const copy = this.state.tasks;
-            const index = copy.findIndex(displayTask=>displayTask.id === task.props.id);
-            copy[index].done = !task.props.done;
-            return copy;
-        })
+    changeDoneTaskHandler(taskId){
+        this.setState({tasks: this.state.tasks.map(initTask => initTask.id === taskId ? {...initTask,done:!initTask.done}:initTask )})
     }
 
     changeFilterHandler(e){
         this.setState({taskFilter:e.target.value});
     }
 
-    removeTaskHandler(task) {
-        this.setState({tasks: this.state.tasks.filter(displayTask => displayTask.id !== task.props.id)})
+    removeTaskHandler(taskId) {
+        this.setState({tasks: this.state.tasks.filter(displayTask => displayTask.id !== taskId)})
     }
 
     addTaskHandler(task){

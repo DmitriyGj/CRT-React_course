@@ -21,12 +21,6 @@ class TaskController extends Component
 
     addTaskHandler(){
         if(this.state.taskTitle){
-                 // this.props.parent.addTaskHandler(<Task id={uuid()}
-                 //                                        done={false}
-                 //                                        priority={this.state.taskPriority}
-                 //                                        title = {this.state.taskTitle}
-                 //                                        parentRemoveTaskHandler= {this.props.parent.removeTaskHandler}
-                 //                                        completeTaskParentHandler={this.props.parent.changeDoneTaskHandler}/>);
             this.props.parent.addTaskHandler({id:uuid(),
                   done:false,
                   priority:this.state.taskPriority,

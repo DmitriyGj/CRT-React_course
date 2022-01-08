@@ -23,13 +23,13 @@ class Task extends Component{
                         <h1>{this.props.title}</h1>
                         <div className='TaskControls'>
                             <button>Редактировать</button>
-                            <button onClick={()=>this.props.parentRemoveTaskHandler(this)}>Удалить</button>
+                            <button onClick={()=>this.props.parentRemoveTaskHandler(this.props.id)}>Удалить</button>
                         </div>
                     </div>
                     <div className='CompleteBlock'>
                         <label htmlFor='complete'>Выполнено:</label>
                         <input id='complete' type='checkbox' checked={this.props.done}
-                               onChange={()=>this.props.changeDoneTaskParentHandler(this)}/>
+                               onChange={()=>this.props.changeDoneTaskParentHandler(this.props.id)}/>
                     </div>
               </div>
     }
