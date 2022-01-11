@@ -20,15 +20,16 @@ class TaskController extends Component
     }
 
     addTaskHandler(){
-        if(this.state.taskTitle){
-            this.props.parent.addTaskHandler({id:uuid(),
-                  done:false,
-                  priority:this.state.taskPriority,
-                  title :this.state.taskTitle});
-        }
-        else{
+        if(!this.state.taskTitle){
             alert('Название не может быть пустым')
+            return;
         }
+
+        this.props.parent.addTaskHandler({id:uuid(),
+            done:false,
+            priority:this.state.taskPriority,
+            title :this.state.taskTitle});
+            
         this.setState({taskTitle:'',taskPriority:'Low'})
     }
 

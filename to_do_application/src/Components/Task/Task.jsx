@@ -5,24 +5,25 @@ class Task extends Component{
     defineBackgroundColor(){
         switch (this.props.priority){
             case 'High':{
-                return 'HighPriorityTask'
+                return 'HighPriorityTask';
             }
             case 'Medium':{
-                return 'MediumPriorityTask'
+                return 'MediumPriorityTask';
             }
             case 'Low':{
-                return  'LowPriorityTask'
+                return  'LowPriorityTask';
+            }
+            default: {
+                return '';
             }
         }
     }
 
     render(){
-        console.log(this.props.done)
         return <div className={`Task ${this.defineBackgroundColor()}`}>
                     <div className='TaskHeader '>
                         <h1>{this.props.title}</h1>
                         <div className='TaskControls'>
-                            <button>Редактировать</button>
                             <button onClick={()=>this.props.parentRemoveTaskHandler(this.props.id)}>Удалить</button>
                         </div>
                     </div>

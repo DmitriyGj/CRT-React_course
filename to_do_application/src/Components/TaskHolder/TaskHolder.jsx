@@ -32,12 +32,11 @@ class TaskHolder extends  Component{
 
     addTaskHandler(task){
         const unique = this.state.tasks.every(instTask => instTask.title !== task.title)
-        if(unique){
-            this.setState({tasks:[...this.state.tasks,task ]});
-        }
-        else{
+        if(!unique){
             alert('Такое задание уже существует')
+            return;
         }
+        this.setState((prevState)=>{return {tasks:[...prevState.tasks,task ]}});
     }
 
     render() {
@@ -49,14 +48,9 @@ class TaskHolder extends  Component{
                                                 parentFilterValue ={this.state.taskFilter} />
                     </div>
                     <ul>
-                        {  [...this.state.tasks].filter(eval(this.state.taskFilter)).
-                        map(task=><li key = {task.id}><Task id={task.id}
-                                                            title = {task.title}
-                                                            done={task.done}
-                                                            priority ={task.priority}
-                                                            parentRemoveTaskHandler={this.removeTaskHandler}
-                                                            changeDoneTaskParentHandler={this.changeDoneTaskHandler}/>
-                        </li>)}
+                        {[...this.state.tasks].filter(eval(this.state.taskFilter)).map(task=><li key = {task.id}>
+                                                                                                <Task {...task}/> 
+                                                                                            </li>)}
                     </ul>
                </div>
     }
