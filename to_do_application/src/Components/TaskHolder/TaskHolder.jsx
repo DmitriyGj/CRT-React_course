@@ -3,6 +3,7 @@ import './TaskHolder.css'
 import {TaskFilterSelector} from "./TaskFilterSelector/TaskFilterSelector";
 import {TaskController} from "./TaskController/TaskController";
 import {Task} from "../Task/Task";
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 class TaskHolder extends  Component{
     constructor(props) {
@@ -40,20 +41,22 @@ class TaskHolder extends  Component{
     }
 
     render() {
-        return <div className='TaskHolder'>
-                    <div className='MainInfo'>
-                        <h2>Управление заданиями</h2>
-                        <TaskController parent = {this}/>
-                        <TaskFilterSelector parentChangeFilterHandler = {this.changeFilterHandler}
-                                                parentFilterValue ={this.state.taskFilter} />
-                    </div>
-                    <ul>
-                        {[...this.state.tasks].filter(eval(this.state.taskFilter)).map(task=><li key = {task.id}>
-                                                                                                <Task {...task}/> 
-                                                                                            </li>)}
-                    </ul>
-               </div>
+        return <ThemeContext.Consumer>{value =>
+                            <div className={`TaskHolder ${value}`}>
+                                <div className='MainInfo'>
+                                    <h2>Управление заданиями</h2>
+                                        <TaskController parent = {this}/>
+                                        <TaskFilterSelector parentChangeFilterHandler = {this.changeFilterHandler}
+                                                            parentFilterValue ={this.state.taskFilter} />
+                                </div>
+                                <ul>
+                                    {[...this.state.tasks].filter(eval(this.state.taskFilter)).map(task=><li key = {task.id}>
+                                                                                                            <Task {...task} parentRemoveTaskHandler = {this.removeTaskHandler}/> 
+                                                                                                        </li>)}
+                                </ul>
+                            </div> } 
+               </ThemeContext.Consumer>
+
     }
 }
-
 export {TaskHolder}

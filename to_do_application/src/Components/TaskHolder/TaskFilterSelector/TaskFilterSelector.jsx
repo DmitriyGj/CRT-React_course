@@ -1,5 +1,7 @@
 import {Component} from "react";
 import uuid from "react-uuid";
+import { ThemeContext } from "../../../contexts/ThemeContext";
+import './TaskFilterSelector.css'
 
 class TaskFilterSelector extends Component{
 
@@ -9,12 +11,17 @@ class TaskFilterSelector extends Component{
                          {value:(task)=>(task.done===false),label:'Текущие'}];
 
         return (
-            <label>Показать
-                <select value={this.props.parentFilterValue}
-                    onChange={this.props.parentChangeFilterHandler}>
+            <ThemeContext.Consumer>{
+                value=> <label>Показать
+                <select className={value+'FilterSelector'}
+                        value={this.props.parentFilterValue}
+                        onChange={this.props.parentChangeFilterHandler}>
                     {options.map(filter => <option key ={uuid()}  value={filter.value.toString()} label={filter.label}></option>)}
                 </select>
-            </label>
+            </label>}
+
+            </ThemeContext.Consumer>
+            
         );
     }
 }

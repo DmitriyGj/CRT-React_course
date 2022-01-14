@@ -7,37 +7,16 @@
     border-radius: 20px;
 }
 
-
 .TaskHolder ul{
     list-style: none;
 }
 
-.TaskController input{
-    margin-left: 5%;
-    background-color: aliceblue;
+.Dark{
+    background-color:rgb(35, 35, 99);
 }
 
-.TaskController select{
-    padding: 0.5%;
-    margin-left: 5%;
-    background-color: aliceblue;
+.Dark .MainInfo{
+    color: whitesmoke;
 }
 
-.TaskController{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.TaskController *{
-    width: 40%;
-    margin: 0.7%;
-}
-
-.TaskController button{
-    width: 20%;
-    border-radius: 10px;
-    background-color: aliceblue;
-}
 

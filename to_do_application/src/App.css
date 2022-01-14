@@ -1,5 +1,19 @@
 .App {
+  flex-direction: column;
   display: flex;
   margin-top: 5%;
   justify-content: center;
+  align-items: center;
 }
+
+.ThemeBtn{
+  padding: 1%;
+  border-radius:50px;
+  background-color:rgb(211, 255, 115);
+}
+
+.DarkThemeBtn{
+  background-color:rgb(73, 94, 28);
+}
+
+

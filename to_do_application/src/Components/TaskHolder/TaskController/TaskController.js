@@ -1,6 +1,8 @@
 import {PrioritySelector} from "../PrioritySelector/PrioritySelector";
 import {Component} from "react";
 import uuid from "react-uuid";
+import {ThemeContext} from '../../../contexts/ThemeContext';
+import './TaskContoller.css';
 
 class TaskController extends Component
 {
@@ -39,15 +41,22 @@ class TaskController extends Component
 
     render() {
         return (
-            <div className='TaskController'>
-                <label> Заголовок
-                    <input type = 'text' value={this.state.taskTitle}
-                           onChange={this.changeTaskTitleHandler} />
-                </label>
-                <PrioritySelector parentValue ={this.state.taskPriority}
-                                  parentChangeHandler = {this.changeTaskPriorityHandler}/>
-                <button onClick={this.addTaskHandler}>Добавить</button>
-            </div>
+            <ThemeContext.Consumer>{ value=>
+                <div className={`TaskController ${value}Controller`}>
+                    <label> Заголовок
+                        <input className={value+'ControllerInput'} 
+                            type = 'text' 
+                            value={this.state.taskTitle}
+                            onChange={this.changeTaskTitleHandler} />
+                    </label>
+                    <ThemeContext.Provider value = {value}>
+                        <PrioritySelector parentValue ={this.state.taskPriority}
+                                    parentChangeHandler = {this.changeTaskPriorityHandler}/>
+                    </ThemeContext.Provider>
+                    <button className={value+'ControllerBtn'} onClick={this.addTaskHandler}>Добавить</button>
+                </div>
+            }
+            </ThemeContext.Consumer>
         );
     }
 }
