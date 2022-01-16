@@ -1,0 +1,46 @@
+.Task{
+    border: 3px solid gray;
+    border-radius: 20px;
+    width: 100%;
+    margin: 5% auto;
+}
+
+.HighPriorityTask{
+    background-color: crimson;
+    border: 2px solid #66212f;
+}
+
+.MediumPriorityTask{
+    background-color: #d0bc55;
+    border: 2px solid #8d8434;
+}
+
+.LowPriorityTask{
+    background-color: #7ed055;
+    border: 2px solid #497226;
+}
+
+.TaskHeader{
+    text-align: left;
+    display: flex;
+    justify-content: center;
+}
+
+.TaskHeader h1{
+    align-self: flex-start;
+    width: 65%;
+}
+
+.TaskHeader .TaskControls button{
+    width: 100%;
+    margin: 5% auto;
+    border-radius: 10px;
+    padding: 2%;
+    background-color: aliceblue;
+}
+
+.CompleteBlock{
+    margin: auto;
+    padding: 1% 9%;
+}
+
