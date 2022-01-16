@@ -30,7 +30,7 @@ class Task extends Component{
                     <div className='CompleteBlock'>
                         <label htmlFor='complete'>Выполнено:</label>
                         <input id='complete' type='checkbox' checked={this.props.done}
-                               onChange={()=>this.props.changeDoneTaskParentHandler(this.props.id)}/>
+                               onChange={()=>this.props.parentChangeDoneTaskHandler(this.props.id)}/>
                     </div>
               </div>
     }
