@@ -51,7 +51,9 @@ class TaskHolder extends  Component{
                                 </div>
                                 <ul>
                                     {[...this.state.tasks].filter(eval(this.state.taskFilter)).map(task=><li key = {task.id}>
-                                                                                                            <Task {...task} parentRemoveTaskHandler = {this.removeTaskHandler}/> 
+                                                                                                            <Task {...task} 
+                                                                                                            parentRemoveTaskHandler = {this.removeTaskHandler}
+                                                                                                            parentChangeDoneTaskHandler = {this.changeDoneTaskHandler}/> 
                                                                                                         </li>)}
                                 </ul>
                             </div> } 
