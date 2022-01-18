@@ -3,9 +3,8 @@ import './TaskHolder.css'
 import {TaskFilterSelector} from "./TaskFilterSelector/TaskFilterSelector";
 import {TaskController} from "./TaskController/TaskController";
 import {Task} from "../Task/Task";
-import { addLodaing } from '../../HOCs/LoaderHOC';
+import PropTypes from 'prop-types';
 
-const TaskWithLoading = addLodaing(Task);
 
 class TaskHolder extends  Component{
     constructor(props) {
@@ -52,7 +51,7 @@ class TaskHolder extends  Component{
                     </div>
                     <ul>
                         {[...this.state.tasks].filter(eval(this.state.taskFilter)).map(task=><li key = {task.id}>
-                                                                                                <TaskWithLoading {...task} 
+                                                                                                <Task {...task} 
                                                                                                 parentRemoveTaskHandler = {this.removeTaskHandler}
                                                                                                 parentChangeDoneTaskHandler = {this.changeDoneTaskHandler}/> 
                                                                                             </li>)}

@@ -1,6 +1,7 @@
 import {PrioritySelector} from "../PrioritySelector/PrioritySelector";
 import {Component} from "react";
 import uuid from "react-uuid";
+import PropTypes from 'prop-types';
 
 class TaskController extends Component
 {
@@ -45,11 +46,15 @@ class TaskController extends Component
                            onChange={this.changeTaskTitleHandler} />
                 </label>
                 <PrioritySelector parentValue ={this.state.taskPriority}
-                                  parentChangeHandler = {this.changeTaskPriorityHandler}/>
+                                  parentChangePriorityHandler = {this.changeTaskPriorityHandler}/>
                 <button onClick={this.addTaskHandler}>Добавить</button>
-            </div>
+        </div>
         );
     }
 }
+
+TaskController.propTypes ={
+    parent: PropTypes.object
+};
 
 export {TaskController};
