@@ -2,6 +2,7 @@ import {Component} from "react";
 import uuid from "react-uuid";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 import './TaskFilterSelector.css'
+import PropTypes from "prop-types";
 
 class TaskFilterSelector extends Component{
 
@@ -25,5 +26,10 @@ class TaskFilterSelector extends Component{
         );
     }
 }
+
+TaskFilterSelector.propTypes={
+    parentFilterValue: PropTypes.string,
+    parentChangeFilterHandler: PropTypes.func
+};
 
 export {TaskFilterSelector};

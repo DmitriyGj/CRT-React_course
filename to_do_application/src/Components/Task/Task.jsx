@@ -1,5 +1,6 @@
 import {Component} from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import PropTypes from 'prop-types';
 import './Task.css'
 
 class Task extends Component{
@@ -35,6 +36,15 @@ class Task extends Component{
             </div>}
         </ThemeContext.Consumer> 
     }
+}
+
+Task.propTypes = {
+    id:PropTypes.string,
+    title: PropTypes.string.isRequired,
+    priority: PropTypes.string,
+    done: PropTypes.bool,
+    parentRemoveTaskHandler: PropTypes.func.isRequired,
+    parentChangeDoneTaskHandler: PropTypes.func.isRequired
 }
 
 export {Task}

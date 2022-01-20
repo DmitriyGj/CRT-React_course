@@ -2,6 +2,7 @@ import {Component} from "react";
 import uuid from "react-uuid";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 import './PrioritySelector.css';
+import PropTypes from "prop-types";
 
 class PrioritySelector extends Component{
 
@@ -18,6 +19,11 @@ class PrioritySelector extends Component{
             </ThemeContext.Consumer> 
     }
 }
+
+PrioritySelector.propTypes={
+    parentValue: PropTypes.string.isRequired,
+    parentChangeHandler: PropTypes.func
+};
 
 export {PrioritySelector};
 

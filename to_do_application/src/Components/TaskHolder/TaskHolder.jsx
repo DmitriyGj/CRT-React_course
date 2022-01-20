@@ -5,6 +5,7 @@ import {TaskController} from "./TaskController/TaskController";
 import {Task} from "../Task/Task";
 import { addLodaing } from '../../HOCs/LoaderHOC';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import PropTypes from 'prop-types';
 
 const TaskWithLoading = addLodaing(Task);
 

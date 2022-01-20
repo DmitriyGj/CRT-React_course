@@ -3,6 +3,7 @@ import {Component} from "react";
 import uuid from "react-uuid";
 import {ThemeContext} from '../../../contexts/ThemeContext';
 import './TaskContoller.css';
+import PropTypes from 'prop-types';
 
 class TaskController extends Component
 {
@@ -60,5 +61,9 @@ class TaskController extends Component
         );
     }
 }
+
+TaskController.propTypes ={
+    parent: PropTypes.object
+};
 
 export {TaskController};
