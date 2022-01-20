@@ -61,7 +61,6 @@ class TaskHolder extends  Component{
                                 </ul>
                             </div> } 
                 </ThemeContext.Consumer>
-
     }
 }
 export {TaskHolder}
