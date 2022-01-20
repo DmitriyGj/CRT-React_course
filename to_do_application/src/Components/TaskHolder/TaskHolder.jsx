@@ -4,6 +4,7 @@ import {TaskFilterSelector} from "./TaskFilterSelector/TaskFilterSelector";
 import {TaskController} from "./TaskController/TaskController";
 import {Task} from "../Task/Task";
 import { addLodaing } from '../../HOCs/LoaderHOC';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 const TaskWithLoading = addLodaing(Task);
 
@@ -43,22 +44,24 @@ class TaskHolder extends  Component{
     }
 
     render() {
-        return <div className='TaskHolder'>
-                    <div className='MainInfo'>
-                        <h2>Управление заданиями</h2>
-                        <TaskController parent = {this}/>
-                        <TaskFilterSelector parentChangeFilterHandler = {this.changeFilterHandler}
-                                                parentFilterValue ={this.state.taskFilter} />
-                    </div>
-                    <ul>
-                        {[...this.state.tasks].filter(eval(this.state.taskFilter)).map(task=><li key = {task.id}>
-                                                                                                <TaskWithLoading {...task} 
-                                                                                                parentRemoveTaskHandler = {this.removeTaskHandler}
-                                                                                                parentChangeDoneTaskHandler = {this.changeDoneTaskHandler}/> 
-                                                                                            </li>)}
-                    </ul>
-               </div>
+        return <ThemeContext.Consumer>{value =>
+                            <div className={`TaskHolder ${value}`}>
+                                <div className='MainInfo'>
+                                    <h2>Управление заданиями</h2>
+                                        <TaskController parent = {this}/>
+                                        <TaskFilterSelector parentChangeFilterHandler = {this.changeFilterHandler}
+                                                            parentFilterValue ={this.state.taskFilter} />
+                                </div>
+                                <ul>
+                                    {[...this.state.tasks].filter(eval(this.state.taskFilter)).map(task=><li key = {task.id}>
+                                                                                                            <TaskWithLoading {...task} 
+                                                                                                            parentRemoveTaskHandler = {this.removeTaskHandler}
+                                                                                                            parentChangeDoneTaskHandler = {this.changeDoneTaskHandler}/> 
+                                                                                                        </li>)}
+                                </ul>
+                            </div> } 
+                </ThemeContext.Consumer>
+
     }
 }
-
 export {TaskHolder}
