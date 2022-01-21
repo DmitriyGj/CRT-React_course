@@ -1,35 +1,27 @@
-import {Component} from "react";
+import {useContext} from "react";
 import uuid from "react-uuid";
 import { ThemeContext } from "../../../contexts/ThemeContext";
 import './TaskFilterSelector.css'
 import PropTypes from "prop-types";
 
-class TaskFilterSelector extends Component{
+export function TaskFilterSelector(props){
 
-    render() {
         const options = [{value:(task)=>task, label: 'Все'},
                          {value:(task)=>(task.done===true),  label:'Выполненные'},
                          {value:(task)=>(task.done===false),label:'Текущие'}];
 
-        return (
-            <ThemeContext.Consumer>{
-                value=> <label>Показать
-                <select className={value+'FilterSelector'}
-                        value={this.props.parentFilterValue}
-                        onChange={this.props.parentChangeFilterHandler}>
-                    {options.map(filter => <option key ={uuid()}  value={filter.value.toString()} label={filter.label}></option>)}
-                </select>
-            </label>}
+        const theme = useContext(ThemeContext);
 
-            </ThemeContext.Consumer>
-            
-        );
-    }
+        return (<label>Показать
+                    <select className={theme+'FilterSelector'}
+                            value={props.parentFilterValue}
+                            onChange={props.parentChangeFilterHandler}>
+                        {options.map(filter => <option key ={uuid()}  value={filter.value.toString()} label={filter.label}></option>)}
+                    </select>
+                </label>);
 }
 
 TaskFilterSelector.propTypes={
     parentFilterValue: PropTypes.string,
     parentChangeFilterHandler: PropTypes.func
 };
-
-export {TaskFilterSelector};

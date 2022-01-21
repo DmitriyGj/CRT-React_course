@@ -1,69 +1,55 @@
 import {PrioritySelector} from "../PrioritySelector/PrioritySelector";
-import {Component} from "react";
+import {useState, useContext} from "react";
 import uuid from "react-uuid";
-import {ThemeContext} from '../../../contexts/ThemeContext';
+import { ThemeContext} from '../../../contexts/ThemeContext';
 import './TaskContoller.css';
 import PropTypes from 'prop-types';
 
-class TaskController extends Component
-{
-    constructor(props) {
-        super(props);
-        this.state={
-            taskTitle:'',
-            taskPriority:'Low',
-        }
-        this.addTaskHandler = this.addTaskHandler.bind(this);
-        this.changeTaskPriorityHandler = this.changeTaskPriorityHandler.bind(this);
-        this.changeTaskTitleHandler = this.changeTaskTitleHandler.bind(this);
+export function TaskController(props){
+
+    const [taskTitle, setTaskTitle] = useState('');
+    const [taskPriority, setTaskPriority] = useState('Low')
+
+    const theme = useContext(ThemeContext);
+
+    const changeTaskPriorityHandler = (e) =>{
+        setTaskPriority(e.target.value);
     }
 
-    changeTaskPriorityHandler(e){
-        this.setState({taskPriority:e.target.value})
-    }
-
-    addTaskHandler(){
-        if(!this.state.taskTitle){
+    const addTaskHandler = () =>{
+        if(!taskTitle){
             alert('Название не может быть пустым')
             return;
         }
 
-        this.props.parent.addTaskHandler({id:uuid(),
+        props.addTaskParentHandler({id:uuid(),
             done:false,
-            priority:this.state.taskPriority,
-            title :this.state.taskTitle});
+            priority:taskPriority,
+            title :taskTitle});
             
-        this.setState({taskTitle:'',taskPriority:'Low'})
+        setTaskTitle('');
+        setTaskPriority('Low');    
     }
 
-    changeTaskTitleHandler(e){
-        this.setState({taskTitle: e.target.value});
+    const changeTaskTitleHandler = (e) => {
+        setTaskTitle(e.target.value);
     }
 
-    render() {
-        return (
-            <ThemeContext.Consumer>{ value=>
-                <div className={`TaskController ${value}Controller`}>
-                    <label> Заголовок
-                        <input className={value+'ControllerInput'} 
-                            type = 'text' 
-                            value={this.state.taskTitle}
-                            onChange={this.changeTaskTitleHandler} />
-                    </label>
-                    <ThemeContext.Provider value = {value}>
-                        <PrioritySelector parentValue ={this.state.taskPriority}
-                                    parentChangeHandler = {this.changeTaskPriorityHandler}/>
-                    </ThemeContext.Provider>
-                    <button className={value+'ControllerBtn'} onClick={this.addTaskHandler}>Добавить</button>
-                </div>
-            }
-            </ThemeContext.Consumer>
-        );
-    }
+    return( <div className={`TaskController ${theme}Controller`}>
+                <label> Заголовок
+                    <input className={theme+'ControllerInput'} 
+                        type = 'text' 
+                        value={taskTitle}
+                        onChange={changeTaskTitleHandler} />
+                </label>
+                <PrioritySelector parentValue ={taskPriority}
+                            parentChangePriorityHandler = {changeTaskPriorityHandler}/>
+                <button className={theme+'ControllerBtn'} onClick={addTaskHandler}>Добавить</button>
+            </div>);
 }
 
 TaskController.propTypes ={
-    parent: PropTypes.object
+    taskTitle: PropTypes.string,
+    taskPriority: PropTypes.string
 };
 
-export {TaskController};

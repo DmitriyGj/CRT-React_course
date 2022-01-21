@@ -1,23 +1,22 @@
-import {Component} from "react";
 import uuid from "react-uuid";
+import {useContext} from 'react';
 import { ThemeContext } from "../../../contexts/ThemeContext";
 import './PrioritySelector.css';
 import PropTypes from "prop-types";
 
-class PrioritySelector extends Component{
+export function PrioritySelector(props){
 
-    render(){
         const options=[{value:'Low',label:'Низкий'},{value:'Medium', label:'Средний'},{value:'High',label:'Высокий'}];
-        return <ThemeContext.Consumer>{ value =>
-                <label>Приоритет
-                        <select className={value+'PrioritySelector'} 
-                                value={this.props.parentValue}
-                                onChange={this.props.parentChangeHandler} >
+
+        const theme = useContext(ThemeContext);
+
+        return (<label>Приоритет
+                        <select className={theme+'PrioritySelector'} 
+                                value={props.parentValue}
+                                onChange={props.parentChangePriorityHandler} >
                             {options.map(option=> <option key={uuid()} value={option.value} label={option.label}></option>)}
                         </select>
-                </label> } 
-            </ThemeContext.Consumer> 
-    }
+                </label>)
 }
 
 PrioritySelector.propTypes={
@@ -25,6 +24,5 @@ PrioritySelector.propTypes={
     parentChangeHandler: PropTypes.func
 };
 
-export {PrioritySelector};
 
 

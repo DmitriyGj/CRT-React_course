@@ -1,13 +1,15 @@
-import {Component} from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { useContext } from "react";
 import PropTypes from 'prop-types';
 import './Task.css'
 
-class Task extends Component{
-    defineBackgroundColor(){
-        switch (this.props.priority){
+export function Task(props) {
+    const theme = useContext(ThemeContext);
+
+    const defineBackgroundColor =()=>{
+        switch (props.priority){
             case 'High':{
-                return 'HighPriorityTask';
+                return 'HighPriorityTask';  
             }
             case 'Medium':{
                 return 'MediumPriorityTask';
@@ -21,21 +23,17 @@ class Task extends Component{
         }
     }
 
-    render(){
-        return  <ThemeContext.Consumer>{ value=>
-        <div className={`Task ${value+this.defineBackgroundColor()}`}>
+    return (<div className={`Task ${theme + defineBackgroundColor()}`}>
                     <div className='TaskHeader '>
-                        <p>{this.props.title}</p>
-                        <button className={value+'TaskBtn'} onClick={()=>this.props.parentRemoveTaskHandler(this.props.id)}>Удалить</button>
+                        <p>{props.title}</p>
+                        <button className={'TaskBtn'} onClick={()=>props.parentRemoveTaskHandler(props.id)}>Удалить</button>
                     </div>
                     <div className='CompleteBlock'>
                         <label htmlFor='complete'>Выполнено:</label>
-                        <input id='complete' type='checkbox' checked={this.props.done}
-                               onChange={()=>this.props.parentChangeDoneTaskHandler(this.props.id)}/>
+                        <input id='complete' type='checkbox' checked={props.done}
+                            onChange={()=>props.parentChangeDoneTaskHandler(props.id)}/>
                     </div>
-            </div>}
-        </ThemeContext.Consumer> 
-    }
+            </div>)
 }
 
 Task.propTypes = {
@@ -46,5 +44,3 @@ Task.propTypes = {
     parentRemoveTaskHandler: PropTypes.func.isRequired,
     parentChangeDoneTaskHandler: PropTypes.func.isRequired
 }
-
-export {Task}
