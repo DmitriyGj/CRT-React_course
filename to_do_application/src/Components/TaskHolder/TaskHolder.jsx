@@ -60,4 +60,9 @@ class TaskHolder extends  Component{
     }
 }
 
+TaskHolder.propTypes ={
+    tasks: PropTypes.array,
+    taskFilter: PropTypes.string
+}
+
 export {TaskHolder}

@@ -54,7 +54,9 @@ class TaskController extends Component
 }
 
 TaskController.propTypes ={
-    parent: PropTypes.object
+    parent: PropTypes.object,
+    taskTitle: PropTypes.string,
+    taskPriority: PropTypes.string
 };
 
 export {TaskController};
