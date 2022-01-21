@@ -23,15 +23,19 @@ export function Task(props) {
         }
     }
 
+
     return (<div className={`Task ${theme + defineBackgroundColor()}`}>
                     <div className='TaskHeader '>
                         <p>{props.title}</p>
                         <button className={'TaskBtn'} onClick={()=>props.parentRemoveTaskHandler(props.id)}>Удалить</button>
                     </div>
-                    <div className='CompleteBlock'>
-                        <label htmlFor='complete'>Выполнено:</label>
-                        <input id='complete' type='checkbox' checked={props.done}
-                            onChange={()=>props.parentChangeDoneTaskHandler(props.id)}/>
+                    <div>
+                        <div className='CompleteBlock'>
+                            <label htmlFor='complete'>Выполнено:</label>
+                            <input id='complete' type='checkbox' checked={props.done}
+                                onChange={()=>props.parentChangeDoneTaskHandler(props.id)}/>
+                            <p></p>
+                        </div>
                     </div>
             </div>)
 }
