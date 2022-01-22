@@ -1,14 +1,14 @@
-import {PrioritySelector} from "../PrioritySelector/PrioritySelector";
+import {Selector} from "../../Selector/Selector";
 import {Component} from "react";
 import uuid from "react-uuid";
-
+import {TaskPriority, TaskPriorityOptions } from "../../../Constants/Constants";
 class TaskController extends Component
 {
     constructor(props) {
         super(props);
         this.state={
             taskTitle:'',
-            taskPriority:'Low',
+            taskPriority:TaskPriority.Low,
         }
         this.addTaskHandler = this.addTaskHandler.bind(this);
         this.changeTaskPriorityHandler = this.changeTaskPriorityHandler.bind(this);
@@ -16,7 +16,7 @@ class TaskController extends Component
     }
 
     changeTaskPriorityHandler(e){
-        this.setState({taskPriority:e.target.value})
+        this.setState({taskPriority:TaskPriority[e.target.value]})
     }
 
     addTaskHandler(){
@@ -25,12 +25,12 @@ class TaskController extends Component
             return;
         }
 
-        this.props.parent.addTaskHandler({id:uuid(),
+        this.props.addTaskParentHandler({id:uuid(),
             done:false,
             priority:this.state.taskPriority,
             title :this.state.taskTitle});
             
-        this.setState({taskTitle:'',taskPriority:'Low'})
+        this.setState({taskTitle:'',taskPriority:TaskPriority.Low})
     }
 
     changeTaskTitleHandler(e){
@@ -41,11 +41,14 @@ class TaskController extends Component
         return (
             <div className='TaskController'>
                 <label> Заголовок
-                    <input type = 'text' value={this.state.taskTitle}
-                           onChange={this.changeTaskTitleHandler} />
+                    <input type = 'text' 
+                            value={this.state.taskTitle}
+                            onChange={this.changeTaskTitleHandler} />
                 </label>
-                <PrioritySelector parentValue ={this.state.taskPriority}
-                                  parentChangeHandler = {this.changeTaskPriorityHandler}/>
+                <Selector title='Приоритет'
+                                options ={TaskPriorityOptions}
+                                parentValue ={this.state.taskPriority}
+                                changeValueParentHandler = {this.changeTaskPriorityHandler}/>
                 <button onClick={this.addTaskHandler}>Добавить</button>
             </div>
         );

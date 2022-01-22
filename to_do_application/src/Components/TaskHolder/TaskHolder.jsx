@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import './TaskHolder.css'
-import {TaskFilterSelector} from "./TaskFilterSelector/TaskFilterSelector";
+import { Selector } from '../Selector/Selector';
+import {TaskFilterOptions , TaskFilterFunctions} from '../../Constants/Constants';
 import {TaskController} from "./TaskController/TaskController";
 import {Task} from "../Task/Task";
 
@@ -9,7 +10,7 @@ class TaskHolder extends  Component{
         super(props);
         this.state ={
             tasks:[ ],
-            taskFilter:'(task)=>task'
+            taskFilterName:'All'
         };
 
         this.addTaskHandler = this.addTaskHandler.bind(this);
@@ -19,11 +20,13 @@ class TaskHolder extends  Component{
     }
 
     changeDoneTaskHandler(taskId){
-        this.setState({tasks: this.state.tasks.map(initTask => initTask.id === taskId ? {...initTask,done:!initTask.done}:initTask )})
+        this.setState(prevState=>{
+            return {tasks: prevState.tasks.map(initTask => initTask.id === taskId ? {...initTask,done:!initTask.done}:initTask)}
+        });
     }
 
     changeFilterHandler(e){
-        this.setState({taskFilter:e.target.value});
+        this.setState({taskFilterName:e.target.value});
     }
 
     removeTaskHandler(taskId) {
@@ -40,16 +43,21 @@ class TaskHolder extends  Component{
     }
 
     render() {
+        const {tasks,taskFilterName} = this.state;
         return <div className='TaskHolder'>
                     <div className='MainInfo'>
                         <h2>Управление заданиями</h2>
-                        <TaskController parent = {this}/>
-                        <TaskFilterSelector parentChangeFilterHandler = {this.changeFilterHandler}
-                                                parentFilterValue ={this.state.taskFilter} />
+                        <TaskController addTaskParentHandler = {this.addTaskHandler}/>
+                        <Selector title='Показать' 
+                                        options={TaskFilterOptions}
+                                        changeValueParentHandler = {this.changeFilterHandler}
+                                        parentValue ={this.state.taskFilterName} />
                     </div>
                     <ul>
-                        {[...this.state.tasks].filter(eval(this.state.taskFilter)).map(task=><li key = {task.id}>
-                                                                                                <Task {...task}/> 
+                        {[...tasks].filter(TaskFilterFunctions[taskFilterName]).map(task=><li key = {task.id}>
+                                                                                                <Task {...task}
+                                                                                                changeDoneTaskParentHandler = {this.changeDoneTaskHandler}
+                                                                                                removeTaskParentHandler = {this.removeTaskHandler}/> 
                                                                                             </li>)}
                     </ul>
                </div>
