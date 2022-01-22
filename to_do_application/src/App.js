@@ -1,34 +1,22 @@
 import './App.css';
 import {TaskHolder} from './Components/TaskHolder/TaskHolder'
-import React from 'react'
-import {ThemeContext,theme} from './contexts/ThemeContext'
-class App extends React.Component {
+import {theme,ThemeContext} from './contexts/ThemeContext'
+import { useState, useCallback } from 'react';
 
-  constructor(props){
-    super(props);
-    this.state={
-      theme:theme.usual
-    };
+export default function App(props) {
+    const [appTheme,setAppTheme] = useState(theme.usual);
+    
+    const toggleThemeHandler = useCallback(()=>{
+      setAppTheme(appTheme === theme.usual ? theme.dark: theme.usual);},
+      [appTheme]);
 
-    this.toggleThemeHandler = this.toggleThemeHandler.bind(this);
-  }
-
-  toggleThemeHandler(){
-    this.setState(prevState=>{return {
-      theme:prevState.theme === theme.usual ? theme.dark: theme.usual}
-    });
-  }
-
-  render(){ return ( 
+   return (
+    <ThemeContext.Provider value = {appTheme}> 
       <div className="App">
-        <ThemeContext.Provider value = {this.state.theme}>
-          <button className={this.state.theme+'ThemeBtn'+' ThemeBtn'} 
-            onClick={this.toggleThemeHandler}>
-              {this.state.theme === theme.usual ? 'Темная тема': 'Светлая тема'}</button>
+          <button className={`${appTheme}ThemeBtn ThemeBtn`} 
+            onClick={toggleThemeHandler}>
+              {appTheme === theme.usual ? 'Темная тема': 'Светлая тема'}</button>
           <TaskHolder />
-        </ThemeContext.Provider>
-      </div>)
-  }
+      </div>
+    </ThemeContext.Provider>)
 }
-
-export default App;

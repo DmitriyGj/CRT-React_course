@@ -5,14 +5,17 @@ export function addLodaing(WrappedComponent){
         constructor(props){
             super(props);
             this.state= {
-                loading: true
+                loading: true,
             };
-
             this.toggleLoadingStateHandler = this.toggleLoadingStateHandler.bind(this);
         }
 
         componentDidMount(){
-            setTimeout( this.toggleLoadingStateHandler, 1000 );
+            this.timeout =setTimeout( this.toggleLoadingStateHandler, 1000 );
+        }
+
+        componentWillUnmount(){
+            clearTimeout(this.timeout);
         }
 
         toggleLoadingStateHandler(){

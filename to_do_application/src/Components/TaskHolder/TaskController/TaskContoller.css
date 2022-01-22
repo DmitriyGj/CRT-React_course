@@ -3,11 +3,7 @@
     background-color: aliceblue;
 }
 
-.TaskController select{
-    padding: 0.5%;
-    margin-left: 5%;
-    background-color: aliceblue;
-}
+
 
 .TaskController{
     display: flex;
@@ -36,10 +32,6 @@
     color:whitesmoke;
 }
 
-.DarkController select{
-    background-color: gray;
-    color:whitesmoke;
-}
 
 .DarkController button{
     background-color:rgb(66, 47, 134);
