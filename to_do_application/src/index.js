@@ -15,7 +15,7 @@ ReactDOM.render(
         <Routes>
           <Route path = '/' element ={<NavigationBlock/>}>
             <Route {...routes.App}/>
-            <Route {...roпше utes.About}/>
+            <Route {...routes.About}/>
           </Route>
         </Routes>
       </BrowserRouter>
