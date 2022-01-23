@@ -1,4 +1,4 @@
-import {Component} from "react";
+import React, {Component} from "react";
 
 export function addLodaing(WrappedComponent){
     return class extends Component{

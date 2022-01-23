@@ -1,12 +1,24 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './Routes/App/App.js';
+import NavigationBlock from './Components/NavigationBlock/NavigationBlock';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import About from './Routes/About'
 
+const routes = {App: {path:'App', element:<App/>},
+                About: {path:'About', element:<About/>}};
 
 ReactDOM.render(
     <React.StrictMode>
-      <App />
+      <BrowserRouter>
+        <Routes>
+          <Route path = '/' element ={<NavigationBlock/>}>
+            <Route {...routes.App}/>
+            <Route {...roпше utes.About}/>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,3 +1,4 @@
+import React from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { useContext } from "react";
 import { TaskBgColors } from "../../Constants/Constants.js";
@@ -24,4 +25,3 @@ export function Task(props) {
                     </div>
             </div>)
 }
-
