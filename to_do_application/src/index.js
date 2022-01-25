@@ -5,20 +5,24 @@ import App from './Routes/App/App.js';
 import NavigationBlock from './Components/NavigationBlock/NavigationBlock';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import About from './Routes/About'
+import { Provider } from 'react-redux';
+import store from './redux/store.js'
 
 const routes = {App: {path:'App', element:<App/>},
                 About: {path:'About', element:<About/>}};
 
 ReactDOM.render(
     <React.StrictMode>
-      <BrowserRouter>
-        <Routes>
-          <Route path = '/' element ={<NavigationBlock/>}>
-            <Route {...routes.App}/>
-            <Route {...routes.About}/>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <Provider store = {store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path = '/' element ={<NavigationBlock/>}>
+              <Route {...routes.App}/>
+              <Route {...routes.About}/>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </React.StrictMode>,
   document.getElementById('root')
 );
