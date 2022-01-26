@@ -2,7 +2,7 @@ import './App.css';
 import {TaskHolder} from './Components/TaskHolder/TaskHolder'
 import {theme,ThemeContext} from './contexts/ThemeContext'
 import { useState, useCallback } from 'react';
-
+import tasksStore from './mobx/tasksStore';
 export default function App(props) {
     const [appTheme,setAppTheme] = useState(theme.usual);
     
@@ -16,7 +16,7 @@ export default function App(props) {
           <button className={`${appTheme}ThemeBtn ThemeBtn`} 
             onClick={toggleThemeHandler}>
               {appTheme === theme.usual ? 'Темная тема': 'Светлая тема'}</button>
-          <TaskHolder />
+          <TaskHolder tasksStore={tasksStore} />
       </div>
     </ThemeContext.Provider>)
 }

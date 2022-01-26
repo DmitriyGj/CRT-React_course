@@ -8,7 +8,7 @@ export function Selector(props){
 
     return  <div className={`${theme}Selector`}>
                 <label>{title}
-                    <select onChange={changeValueParentHandler} 
+                    <select onChange={(e)=>changeValueParentHandler(e.target.value)} 
                             value={parentValue}>
                         {options.map(option=> <option {...option}></option>)}
                     </select>

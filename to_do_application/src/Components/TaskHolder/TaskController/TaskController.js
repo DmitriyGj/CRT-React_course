@@ -1,5 +1,4 @@
 import {useState, useContext} from "react";
-import uuid from "react-uuid";
 import { ThemeContext} from '../../../contexts/ThemeContext';
 import './TaskContoller.css';
 import { Selector } from "../../Selector/Selector";
@@ -12,8 +11,8 @@ export function TaskController(props){
 
     const theme = useContext(ThemeContext);
 
-    const changeTaskPriorityHandler = (e) =>{
-        setTaskPriority(TaskPriority[e.target.value]);
+    const changeTaskPriorityHandler =(priorityName)=> {
+        setTaskPriority(TaskPriority[priorityName]);
     };
 
     const addTaskHandler = () =>{
@@ -22,8 +21,7 @@ export function TaskController(props){
             return;
         }
 
-        props.addTaskParentHandler({id:uuid(),
-            done:false,
+        props.addTaskParentHandler({done:false,
             priority:taskPriority,
             title :taskTitle});
             
