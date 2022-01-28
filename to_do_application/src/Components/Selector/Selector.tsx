@@ -2,8 +2,9 @@ import React from "react";
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import './Selector.css'
+import { ISelectorProps } from "./SelectorModel";
 
-export function Selector(props){
+export function Selector(props:ISelectorProps){
     const theme = useContext(ThemeContext)
     const {title,changeValueParentHandler, parentValue,options} = props;
 

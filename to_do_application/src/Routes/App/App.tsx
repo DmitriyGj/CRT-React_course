@@ -4,7 +4,7 @@ import { TaskHolder } from '../../Components/TaskHolder/TaskHolder';
 import {theme,ThemeContext} from '../../contexts/ThemeContext'
 import { useState, useCallback } from 'react';
 
-export default function App(props) {
+export default function App() {
     const [appTheme,setAppTheme] = useState(theme.usual);
     
     const toggleThemeHandler = useCallback(()=>{

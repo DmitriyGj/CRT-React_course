@@ -7,7 +7,7 @@ import { addLodaing } from '../../HOCs/LoaderHOC';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { Selector } from '../Selector/Selector';
 import { useDispatch,useSelector } from 'react-redux';
-import {addTask,removeTask,changeDoneState,setFilter,clearFailure} from '../../redux/tasks'
+import {addTask,removeTask,changeDoneState,setFilter,getTasks} from '../../redux/tasks'
 
 const TaskWithLoading = addLodaing(Task);
 
@@ -15,7 +15,7 @@ export function TaskHolder(){
 
     const theme = useContext(ThemeContext);
 
-    const {tasks,taskFilter,TaskFilterOptions,failure,clearFailure} = useSelector((state)=>state.tasks);
+    const {tasks,taskFilter,TaskFilterOptions} = useSelector(getTasks);
     const dispatch = useDispatch();
 
     const changeFilterHandler = useCallback((e) => dispatch(setFilter(e.target.value)),[dispatch])

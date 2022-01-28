@@ -1,19 +1,20 @@
 import React from "react";
 import {useState, useContext} from "react";
-import uuid from "react-uuid";
+import {v4 as uuid} from "uuid";
 import { ThemeContext} from '../../../contexts/ThemeContext';
 import './TaskContoller.css';
-import { Selector } from "../../Selector/Selector";
+import { Selector } from '../../Selector/Selector';
 import { TaskPriority,TaskPriorityOptions } from "../../../Constants/Constants";
+import { TaskContollerProps } from "./TaskControllerModel";
 
-export function TaskController(props){
+export function TaskController(props:TaskContollerProps){
 
-    const [taskTitle, setTaskTitle] = useState('');
-    const [taskPriority, setTaskPriority] = useState('Low')
+    const [taskTitle, setTaskTitle] = useState<string>('');
+    const [taskPriority, setTaskPriority] = useState<string>(TaskPriority.Low)
 
     const theme = useContext(ThemeContext);
 
-    const changeTaskPriorityHandler = (e) =>{
+    const changeTaskPriorityHandler = (e:React.ChangeEvent<HTMLSelectElement>):void =>{
         setTaskPriority(TaskPriority[e.target.value]);
     };
 
@@ -32,7 +33,7 @@ export function TaskController(props){
         setTaskPriority('Low');    
     }
 
-    const changeTaskTitleHandler = (e) => {
+    const changeTaskTitleHandler = (e:React.ChangeEvent<HTMLInputElement>):void => {
         setTaskTitle(e.target.value);
     }
 

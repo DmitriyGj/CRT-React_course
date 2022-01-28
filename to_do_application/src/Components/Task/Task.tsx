@@ -1,14 +1,15 @@
 import React from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { useContext } from "react";
-import { TaskBgColors } from "../../Constants/Constants.js";
+import { TaskBgColors } from "../../Constants/Constants";
 import './Task.css'
+import { TaskProps } from "./TaskModel";
 
-export function Task(props) {
+export function Task(props:TaskProps) {
     const theme = useContext(ThemeContext);
     const {id, title, priority , done, changeDoneTaskParentHandler, removeTaskParentHandler} = props; 
 
-    return (<div className={`Task ${theme+TaskBgColors[priority]}`}>
+    return (<div className={`Task ${theme}${TaskBgColors[priority]}`}>
                     <div className='TaskHeader '>
                         <p>{title}</p>
                         <button className={'TaskBtn'} 

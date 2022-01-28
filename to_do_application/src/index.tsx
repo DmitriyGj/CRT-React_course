@@ -1,12 +1,12 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './Routes/App/App.js';
+import App from './Routes/App/App';
 import NavigationBlock from './Components/NavigationBlock/NavigationBlock';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import About from './Routes/About'
 import { Provider } from 'react-redux';
-import store from './redux/store.js'
+import {store} from './redux/store'
 
 const routes = {App: {path:'App', element:<App/>},
                 About: {path:'About', element:<About/>}};

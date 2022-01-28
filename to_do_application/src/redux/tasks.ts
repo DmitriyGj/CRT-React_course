@@ -1,7 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TaskFilter, TaskFilterOptions } from "../Constants/Constants";
+import { ISelectorOption, ITaskFilter, TaskFilter, TaskFilterOptions } from "../Constants/Constants";
+import { Task } from "../Components/Task/TaskModel";
+import {RootState} from './store';
 
-const initialState = {tasks:[],
+type initialState ={
+    tasks:Task[],
+    taskFilter:ITaskFilter,
+    TaskFilterOptions:ISelectorOption[]
+}
+
+const initialState:initialState = {tasks:[],
                 taskFilter:TaskFilter.All,
                 TaskFilterOptions:TaskFilterOptions,
             };
@@ -33,5 +41,6 @@ export const tasksSlice = createSlice({
 
 
 
-export const {addTask, removeTask, changeDoneState,applyFilter,setFilter} = tasksSlice.actions;
+export const {addTask, removeTask, changeDoneState,setFilter} = tasksSlice.actions;
 export default tasksSlice.reducer;
+export const getTasks = (state:RootState)=>state.tasks;
