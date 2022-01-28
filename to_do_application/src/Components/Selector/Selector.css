@@ -1,0 +1,13 @@
+.Selector select{
+    padding: 0.5%;
+    margin-left: 5%;
+    background-color: aliceblue;
+}
+
+.DarkSelector select{
+    padding: 0.5%;
+    margin-left: 5%;
+    background-color: gray;
+    color:whitesmoke;
+}
+
