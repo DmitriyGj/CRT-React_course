@@ -1,0 +1,10 @@
+:root{
+    --usuasal--background--list--color:gray;
+}
+
+.TaskList{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}

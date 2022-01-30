@@ -1,81 +1,66 @@
+*{
+    margin:0%;
+}
+
+:root{
+    --task--background:rgba(202, 193, 193, 0.481);
+    --button--border--color: gray;
+}
+
 .Task{
-    border: 3px solid gray;
-    border-radius: 20px;
-    width: 100%;
-    margin: 5% auto;
-}
-
-.Task button{
-    box-sizing:border-box;
-    align-self:center;
-    width: 15%;
-    padding: 1% 2%;
-    height: 10%;
-    border-radius: 10px;
-}
-
-.BtnTask{
-    border:2px solid gray;
-}
-
-
-.HighPriorityTask{
-    background-color: crimson;
-    border: 2px solid #66212f;
-}
-
-.DarkHighPriorityTask{
-    background-color: rgb(117, 49, 63);
-    border: 2px solid #704049;
-}
-
-.MediumPriorityTask{
-    background-color: #d0bc55;
-    border: 2px solid #8d8434;
-}
-
-.DarkMediumPriorityTask{
-    background-color: #8b7d33;
-    border: 2px solid #7c7749;
-}
-
-.LowPriorityTask{
-    background-color: #7ed055;
-    border: 2px solid #497226;
-}
-
-.DarkLowPriorityTask{
-    background-color: #3a791b;
-    border: 2px solid #658648;
-    color:whitesmoke;
-}
-
-.TaskHeader{
-    text-align: left;
+    justify-content:center;
+    align-items:center;
     display: flex;
-    justify-content: center;
-}
-
-.TaskHeader p{
-    align-self: flex-start;
-    width: 65%;
-}
-
-.TaskHeader .TaskControls button{
-    width: 100%;
-    margin: 5% auto;
+    margin:0.5% 0.5%; 
+    padding:0.5% 0;
+    flex-direction:row;
+    width:50%;
+    background-color: var(--task--background);
     border-radius: 10px;
-    padding: 2%;
+    box-sizing: border-box;
+}
+
+.Task *{
+    margin: 0% .5% 0 .5%;
+}
+
+.TaskControls{
+    min-width: 20%;
+    max-width: 20%;
+}
+
+.TaskControls button{
+    background-color:transparent;
+    border:1px;
+    font-size: 20px;
+    font-size: calc(10px + 2vmin);
+}
+
+.TaskControls button:hover{
+    box-sizing: border-box;
+    transform: scale(1.2);
+}
+
+.TaskDate{
+    min-width: 15%;
+    max-width: 15%;
+}
+
+.TaskTitle{
+    min-width:45%;
+    max-width:45%;
+}
+
+.TaskTitle p{
+    word-wrap:break-word;
+}
+
+.TaskPriority{
+    max-width: 20%;
+    max-width: 20%;
+    text-align: center;
+}
+
+.task-theme-Light{
     background-color: aliceblue;
-}
-
-.CompleteBlock{
-    margin: auto;
-    padding: 1% 9%;
-}
-
-.DarkTaskBtn{
-    background-color:rgb(59, 59, 129);
-    color:white;
-    border:2px solid gray
 }

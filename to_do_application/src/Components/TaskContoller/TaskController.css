@@ -1,0 +1,29 @@
+:root{
+    --background--color:gray;
+}
+
+.TaskController{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Task-title{
+    width: 40%;
+}
+
+.Task-title input{
+    width: 100%
+}
+
+.Add-button{
+    width: 100px
+}
+
+.TaskController div{
+    margin-left:5%;
+}
+
+.TaskController div:first-child{
+    margin-left:0;
+}
