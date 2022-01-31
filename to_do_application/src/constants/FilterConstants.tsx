@@ -1,5 +1,5 @@
-import { Buffer,TaskFilter, ICustomSelectOption } from "../types/types";
-import {v4 as uuid} from "uuid";
+import { Buffer,TaskFilter, ICustomSelectOption } from '../types/types';
+import {v4 as uuid} from 'uuid';
 
 export const TaskFiltersBuffer:Buffer<TaskFilter>={
     All:{func:(task)=>task,name:'All'},

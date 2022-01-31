@@ -4,7 +4,7 @@ import {ModalProps} from '../../types/types'
 import { onKeyDown } from '../../functions/functions';
 import {ThemeContext} from '../../contexts/ThemeContext'
 
-export const Modal = function Modal({visible = false,
+export const ModalWindow = function Modal({visible = false,
                                     title = '',
                                     content = '',
                                     footer = '',

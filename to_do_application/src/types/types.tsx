@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export type Filter = 'All' | 'Done' | 'NotDone';
 
@@ -7,7 +7,7 @@ export type Buffer<T>={
 }
 
 export type TaskFilter ={
-    func:(task:Task)=>Task | boolean
+    func:(task:TTask)=>TTask | boolean
     name:string
 }
 
@@ -36,7 +36,7 @@ export type TaskCreateProps={
     deadLine:Date
 }
 
-export type Task = {
+export type TTask = {
     id:string
     title: string
     done:boolean
@@ -53,7 +53,7 @@ export interface ModalProps {
 }
 
 export type TaskState ={
-    tasks:Task[]
+    tasks:TTask[]
 }
 
 export type FilterState={
@@ -66,7 +66,7 @@ export type TaskManagerStore={
 }
 
 export type TaskContollerProps={
-    task?:Task
+    task?:TTask
 }
 
 export type LinkProps={

@@ -1,7 +1,8 @@
-import { TaskManagerPage } from "../routes/TaskManager/TaskManagerRoute";
-import { About } from "../routes/About/About";
-import { LinkRenderProps } from "../types/types";
-import { MainPage } from "../routes/MainPage/MainPage";
+import React from 'react';
+import { TaskManagerPage } from '../routes/TaskManager/TaskManagerRoute';
+import { About } from '../routes/About/About';
+import { LinkRenderProps } from '../types/types';
+import { MainPage } from '../routes/MainPage/MainPage';
 import {v4 as uuid} from 'uuid';
 
 const ConstantRoutesBuffer = {StartPage:{path:'/',element:<MainPage/>},

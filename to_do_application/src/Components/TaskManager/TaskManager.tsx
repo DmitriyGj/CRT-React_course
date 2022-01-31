@@ -1,8 +1,8 @@
 import React, { useState,useCallback } from 'react';
-import { TaskList } from '../../components/TaskList/TaskList';
-import {Modal} from '../../components/ModalWindow/ModalWindow';
-import { TaskController } from '../../components/TaskContoller/TaskController';
-import { CustomSelect } from '../../components/CustomSelect/CustomSelect';
+import {TaskList} from '../TaskList/TaskList';
+import {ModalWindow} from '../ModalWindow/ModalWindow';
+import { TaskController } from '../TaskContoller/TaskController';
+import { CustomSelect } from '../CustomSelect/CustomSelect';
 import { TaskFilterOptions } from '../../constants/FilterConstants';
 import { useDispatch, useSelector,Provider } from 'react-redux';
 import { changeFilter,getFilter } from '../../reducers/FilterReducer';
@@ -25,7 +25,7 @@ export const TaskManager:React.FunctionComponent = function TaskManager(){
                     <button onClick={()=>setIsOpenModal(true)}>Добавить задачу</button>
                 </div>
                 <TaskList></TaskList>
-                <Modal visible={isOpenModal}
+                <ModalWindow visible={isOpenModal}
                     title='Добавление задачи'
                     content={<TaskController/>}
                     footer={<button onClick={()=>setIsOpenModal(false)}>Закрыть</button>}

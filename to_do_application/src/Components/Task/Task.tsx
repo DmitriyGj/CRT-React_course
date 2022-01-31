@@ -1,15 +1,15 @@
-import React from "react";
-import { Task } from "../../types/types";
+import React from 'react';
+import { TTask } from '../../types/types';
 import {useDispatch} from 'react-redux'
-import { useCallback, useState } from "react";
-import { removeTask,changeDoneState } from "../../reducers/TaskReduser";
-import { TaskPriorityViews } from "../../constants/TaskConstants";
-import { ThemeContext } from "../../contexts/ThemeContext";
-import { Modal } from "../ModalWindow/ModalWindow";
-import { TaskController } from "../TaskContoller/TaskController";
+import { useCallback, useState } from 'react';
+import { removeTask,changeDoneState } from '../../reducers/TaskReduser';
+import { TaskPriorityViews } from '../../constants/TaskConstants';
+import { ThemeContext } from '../../contexts/ThemeContext';
+import { ModalWindow } from '../ModalWindow/ModalWindow';
+import { TaskController } from '../TaskContoller/TaskController';
 import './Task.css';
 
-export const Todo: React.FunctionComponent<Task>= function Task(props:Task){
+export const Task: React.FunctionComponent<TTask>= function Task(props:TTask){
 
     const {id,title,done,deadLine,priority} = props;
     const dispatch = useDispatch();
@@ -42,7 +42,7 @@ export const Todo: React.FunctionComponent<Task>= function Task(props:Task){
                     <button onClick={()=>setIsOpenModal(true)}>🖊️</button>
                     <button onClick= {()=>removeTaskHandler(id)}>🗑️</button>
                 </div>
-                <Modal visible={isOpenModal}
+                <ModalWindow visible={isOpenModal}
                     title='Редактирование задачи'
                     content={<TaskController task={props}/>}
                     footer={<button onClick={()=>setIsOpenModal(false)}>Закрыть</button>}

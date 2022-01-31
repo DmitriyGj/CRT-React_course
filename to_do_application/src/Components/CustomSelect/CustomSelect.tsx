@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {CustomSelectProps} from '../../types/types';
 import './CustomSelect.css';
 

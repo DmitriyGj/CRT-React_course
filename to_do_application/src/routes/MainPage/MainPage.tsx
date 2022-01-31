@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 import {ThemeContext} from '../../contexts/ThemeContext'
-import { Outlet } from "react-router-dom";
-import { theme } from "../../constants/ThemeConstants";
-import { NavigationMenu } from "../../components/NavigationMenu/NavigationMenu";
+import { Outlet } from 'react-router-dom';
+import { theme } from '../../constants/ThemeConstants';
+import { NavigationMenu } from '../../Components/NavigationMenu/NavigationMenu';
 import './MainPage.css';
 
 
