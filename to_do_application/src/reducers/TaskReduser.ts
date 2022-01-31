@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {RootState} from '../store/TaskManagerStore';
 import {v4 as uuid} from 'uuid'
 import {TaskState} from '../types/types';
+import { toDateString } from '../functions/functions';
 
 const initialState:TaskState = {tasks:[] };
 
@@ -14,9 +15,10 @@ export const tasksSlice = createSlice({
                 alert('Такое задание уже существует');
                 return state;
             }
-            if(Date.parse(action.payload.deadLine)<Date.now())
+            const todayString = toDateString(new Date());
+            if(Date.parse(action.payload.deadLine)< Date.parse(todayString))
             {
-                alert('Дата не может быть ментше текущей');
+                alert('Дата не может быть меньше текущей');
                 return state;
             }
             state.tasks.push({...action.payload, id:uuid(),done:false});

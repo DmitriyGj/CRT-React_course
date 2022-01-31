@@ -1,10 +1,10 @@
-import React, {useState,useEffect} from "react";
-import { addTask,editTask } from "../../reducers/TaskReduser";
-import { useDispatch } from "react-redux";
-import {CustomSelect} from "../CustomSelect/CustomSelect";
+import React, {useState,useEffect} from 'react';
+import { addTask,editTask } from '../../reducers/TaskReduser';
+import { useDispatch } from 'react-redux';
+import {CustomSelect} from '../CustomSelect/CustomSelect';
 import {TaskPriorityOptions, TaskPriorities} from '../../constants/TaskConstants';
-import { TaskContollerProps } from "../../types/types";
-import { onKeyDown, DateToString } from "../../functions/functions";
+import { TaskContollerProps } from '../../types/types';
+import { onKeyDown, toDateString } from '../../functions/functions';
 import './TaskController.css'
 
 export const TaskController:React.FunctionComponent<TaskContollerProps> = 
@@ -12,7 +12,7 @@ function TaskController({task}:TaskContollerProps){
     const dispatch = useDispatch();
     const [title,setTitle] = useState(task? task.title: '');
     const [priority,setPriority] = useState(task? task.priority:TaskPriorities.Low);
-    const [deadLine,setDeadLine] = useState(task? DateToString(task.deadLine):DateToString(new Date()));
+    const [deadLine,setDeadLine] = useState(task? toDateString(task.deadLine):toDateString(new Date()));
     
     const clickOkHandler = ()=>{
         if(!title){
@@ -29,7 +29,6 @@ function TaskController({task}:TaskContollerProps){
     }
 
     useEffect(() => {
-        console.log(deadLine.toString());
         const onKeydownHandler =(e:KeyboardEvent)=> onKeyDown('Enter',clickOkHandler)(e)
         document.addEventListener('keydown',onKeydownHandler);
         return () => document.removeEventListener('keydown', onKeydownHandler);

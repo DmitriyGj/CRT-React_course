@@ -35,7 +35,7 @@ export const Task: React.FunctionComponent<TTask>= function Task(props:TTask){
                 </div>
                 <div className='TaskDate'>
                     <label>Дедлайн:</label>
-                    <p>{`${deadLine.getDate()}-${deadLine.getMonth()}-${deadLine.getFullYear()}`}</p>
+                    <p>{`${deadLine.toLocaleDateString()}`}</p>
                 </div>
                 <div className='TaskControls'>
                     <button onClick={()=>changeDoneStateHandler(id)}>{done? '✔️':'❌'}</button>
