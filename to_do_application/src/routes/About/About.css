@@ -1,0 +1,21 @@
+.Author-info{
+    display:flex;
+    padding:1%;
+    align-items: center;
+    justify-content:center;
+    flex-direction:column;
+}
+
+.Author-info img{
+    width: 70%;
+    height:100%;
+    border-radius:500px;
+}
+
+.Author-name{
+    font-size: calc(1px + 2vmin);
+}
+
+.Contatts{
+    font-size:10px;
+}

@@ -1,0 +1,66 @@
+*{
+    margin:0%;
+}
+
+:root{
+    --task--background:rgba(202, 193, 193, 0.481);
+    --button--border--color: gray;
+}
+
+.Task{
+    justify-content:center;
+    align-items:center;
+    display: flex;
+    margin:0.5% 0.5%; 
+    padding:0.5% 0;
+    flex-direction:row;
+    width:50%;
+    background-color: var(--task--background);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.Task *{
+    margin: 0% .5% 0 .5%;
+}
+
+.TaskControls{
+    min-width: 20%;
+    max-width: 20%;
+}
+
+.TaskControls button{
+    background-color:transparent;
+    border:1px;
+    font-size: 20px;
+    font-size: calc(10px + 2vmin);
+}
+
+.TaskControls button:hover{
+    box-sizing: border-box;
+    transform: scale(1.2);
+}
+
+.TaskDate{
+    min-width: 15%;
+    max-width: 15%;
+}
+
+.TaskTitle{
+    min-width:45%;
+    max-width:45%;
+}
+
+.TaskTitle p{
+    word-wrap:break-word;
+}
+
+.TaskPriority{
+    max-width: 20%;
+    max-width: 20%;
+    text-align: center;
+}
+
+.task-theme-Light{
+    background-color: aliceblue;
+}

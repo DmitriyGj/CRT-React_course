@@ -1,0 +1,45 @@
+:root{
+  --app-bg--dark--color:#282c34;
+  --app-font--dark--color:white;
+  --app-bg--ligt--color:gainsboro;
+  --app-font--light--color:black;
+}
+
+.App {
+  text-align: center;
+  background-color: var(--app-bg--dark--color);
+  color: var(--app-font--dark--color);
+  font-size: calc(10px + 2vmin);
+}
+
+.App-body{
+  height:calc(77.6vh);
+}
+
+.App-header {
+  display: column;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-controls{
+  margin: 1% 0%;
+}
+.Theme-btn{
+  background:transparent ;
+  border: 0px;
+  font-size: calc(10px + 2vmin);
+  margin-top:1%
+}
+
+.Theme-btn:hover{
+  transform:scale(1.1)
+}
+
+.app-theme-Light{
+  background-color: var(--app-bg--ligt--color);
+  color:var(--app-font--light--color);
+}
+
