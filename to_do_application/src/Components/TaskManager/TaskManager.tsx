@@ -27,7 +27,7 @@ export const TaskManager:React.FunctionComponent = function TaskManager(){
                 <TaskList></TaskList>
                 <ModalWindow visible={isOpenModal}
                     title='Добавление задачи'
-                    content={<TaskController/>}
+                    content={<TaskController closeModal = {()=>setIsOpenModal(false)}/>}
                     footer={<button onClick={()=>setIsOpenModal(false)}>Закрыть</button>}
                     onClose={()=>setIsOpenModal(false)}/>
             </div>

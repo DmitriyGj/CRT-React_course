@@ -8,7 +8,7 @@ import { onKeyDown, toDateString } from '../../functions/functions';
 import './TaskController.css'
 
 export const TaskController:React.FunctionComponent<TaskContollerProps> = 
-function TaskController({task}:TaskContollerProps){
+function TaskController({task,closeModal}:TaskContollerProps){
     const dispatch = useDispatch();
     const [title,setTitle] = useState(task? task.title: '');
     const [priority,setPriority] = useState(task? task.priority:TaskPriorities.Low);
@@ -26,6 +26,10 @@ function TaskController({task}:TaskContollerProps){
         const action =task? editTask:addTask;
         const parsedDeadLine = new Date(Date.parse(deadLine));
         dispatch(action({id:task?.id,title:title,priority:priority,deadLine:parsedDeadLine}));
+        setTitle('');
+        setPriority(TaskPriorities.Low);
+        setDeadLine(toDateString(new Date));
+        closeModal?.();
     }
 
     useEffect(() => {

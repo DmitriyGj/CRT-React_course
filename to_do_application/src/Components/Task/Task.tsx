@@ -44,7 +44,7 @@ export const Task: React.FunctionComponent<TTask>= function Task(props:TTask){
                 </div>
                 <ModalWindow visible={isOpenModal}
                     title='Редактирование задачи'
-                    content={<TaskController task={props}/>}
+                    content={<TaskController task={props} closeModal = {()=>setIsOpenModal(false)}/>}
                     footer={<button onClick={()=>setIsOpenModal(false)}>Закрыть</button>}
                     onClose={()=>setIsOpenModal(false)}/>
             </div>}

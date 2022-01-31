@@ -67,6 +67,7 @@ export type TaskManagerStore={
 
 export type TaskContollerProps={
     task?:TTask
+    closeModal?:()=> void
 }
 
 export type LinkProps={
